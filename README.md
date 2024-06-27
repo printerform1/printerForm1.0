@@ -46,7 +46,7 @@ Design Brief
 ## Acknowledgements
 ### Brown University
 Professor Ian Gonsher \
-Alara Kalfazade, Vivian Li, Katherine Lynch, Zimu Niu, and José Sandoval
+Alara Kalfazade, Vivian Li, Katherine Lynch, Zimu Niu, José Sandoval, and Erick Torres
 ### PrinterForm
 Harry Tan
 ### Additional Projects
