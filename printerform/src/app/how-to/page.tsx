@@ -40,7 +40,13 @@ const HowTo = () => {
           >
             STL file
           </a>{" "}
-            type. Then upload your STL to PrinterForm.
+            type. Then upload your STL to PrinterForm. You can find more about STL files in{" "}
+            <a
+              href="/resources"
+              className="underline text-blue-600 hover:text-blue-800"
+            >
+              resources
+            </a>.
           </p>
         </div>
       </div>

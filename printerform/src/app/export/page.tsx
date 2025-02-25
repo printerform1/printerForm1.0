@@ -1359,7 +1359,8 @@ const Export = () => {
                            className="bg-gray-500 hover:bg-gray-600 text-white transition duration-200 rounded-md p-5"
                            onClick={() => router.push('/upload')}
                        >
-                           Reupload
+                           {/* Reupload */}
+                            Upload
                        </button>
                        {/* Next Button */}
                        <button
