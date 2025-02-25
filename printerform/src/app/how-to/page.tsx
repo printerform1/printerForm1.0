@@ -42,7 +42,7 @@ const HowTo = () => {
           </a>{" "}
             type. Then upload your STL to PrinterForm. You can find more about STL files in{" "}
             <a
-              href="/resources"
+              href="/printerForm1.0/resources"
               className="underline text-blue-600 hover:text-blue-800"
             >
               resources
