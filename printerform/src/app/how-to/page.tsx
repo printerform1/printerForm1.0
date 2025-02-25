@@ -31,7 +31,15 @@ const HowTo = () => {
           </h2>
           <p className="text-xl" style={{ color: "#40001C" }}>
             Using any 3D modeling software or 3D print gallery site, create or
-            select your desired model. Export your chosen part as a STL file
+            select your desired model. Export your chosen part as an {" "}
+            <a
+            href="https://en.wikipedia.org/wiki/STL_(file_format)"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline text-blue-600 hover:text-blue-800"
+          >
+            STL file
+          </a>{" "}
             type. Then upload your STL to PrinterForm.
           </p>
         </div>

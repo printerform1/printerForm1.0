@@ -60,7 +60,8 @@ const Toolbar = ({
               className="flex h-full items-center justify-center p-5 bg-blue-900 text-white cursor-pointer"
               onClick={() => reuploadInputRef.current?.click()}
             >
-              Reupload
+              {/* Reupload */}
+              Upload
             </button>
 
             <input

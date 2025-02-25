@@ -1359,7 +1359,7 @@ const Export = () => {
                            className="bg-gray-500 hover:bg-gray-600 text-white transition duration-200 rounded-md p-5"
                            onClick={() => router.push('/upload')}
                        >
-                           Reupload
+                           Upload
                        </button>
                        {/* Next Button */}
                        <button
@@ -1392,7 +1392,17 @@ const Export = () => {
                            >
                                Download Final PDF
                            </button>
+
+                           <button
+                               type="button"
+                               className="transition duration-200 rounded-md p-5 mt-5 bg-light-gray-500 text-white"
+                               style={{ backgroundColor: '#8E2929' }}
+                               onClick={() => {router.push('/how-to');}}
+                           >
+                               Folding instructions
+                           </button>
                        </div>
+                    //    Add button back to instructions to fold the final pdf
                    )}
                </div>
                <div>
