@@ -99,6 +99,19 @@ const Upload = () => {
             setIsReturningWithStoredFile(true); // Set flag to indicate we have a stored file
         }
     }, []);
+    
+    // Function to show the information modal immediately
+    useEffect(() => {
+        showModal(
+            <PromptModal
+                title="File Types Information"
+                bodyText={`STL file meaning: STL (Stereolithography) files represent 3D models using triangular facets. They are commonly used for 3D printing.\n\nCAD meaning: CAD (Computer-Aided Design) refers to software used to create precise 2D and 3D designs for engineering and manufacturing.`}
+                onConfirm={() => {}} // Do nothing, just close the modal
+                confirmText="Got it"
+            />
+        );
+    }, []);
+    
 
     return (
         <>
