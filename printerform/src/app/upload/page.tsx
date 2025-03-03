@@ -105,13 +105,20 @@ const Upload = () => {
         showModal(
             <PromptModal
                 title="File Types Information"
-                bodyText={`STL file: STL (Stereolithography) files represent 3D models using triangular facets. They are commonly used for 3D printing.\n\nCAD: CAD (Computer-Aided Design) refers to software used to create precise 2D and 3D designs. \n\nYou can learn more in <a href="/printerForm1.0/resources" style="color: #00aaff; text-decoration: underline;">Resources</a>. Then, upload your STL file to PrinterForm.`}
-                onConfirm={() => {}} 
+                bodyText={
+                    `STL file: An STL file is a type of 3D model made of triangles. It is often used for 3D printing.\n\n` +
+                    `CAD: CAD stands for Computer-Aided Design. It is software used to create detailed 2D and 3D drawings and models.\n\n` +
+                    `You can learn more in [Resources](https://printerform1.github.io/printerForm1.0/resources).\n\n` +
+                    `Then, upload your STL file to PrinterForm.`
+                }
+                onConfirm={() => {}}  // Do nothing, just close the modal
+                onCancel={undefined}  // Hide cancel button by not providing an action
                 confirmText="Got it"
-                onCancel={undefined}
             />
         );
-    }, []);
+    }, []);  // Run only once when the component mounts
+
+
 
     // useEffect(() => {
     //     showModal(
