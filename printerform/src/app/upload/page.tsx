@@ -100,18 +100,37 @@ const Upload = () => {
         }
     }, []);
     
+    // // Function to show the information modal immediately
+    // useEffect(() => {
+    //     showModal(
+    //         <PromptModal
+    //             title="File Types Information"
+    //             bodyText={
+    //                 `STL file: An STL file is a type of 3D model made of triangles. It is often used for 3D printing.\n\n` +
+    //                 `CAD: CAD stands for Computer-Aided Design. It is software used to create detailed 2D and 3D drawings and models.\n\n` +
+    //                 `You can learn more in Resources\n\n`
+    //             }
+    //             onConfirm={() => {}} 
+    //             onCancel={undefined} 
+    //             confirmText="Got it"
+    //         />
+    //     );
+    // }, []);  // Run only once when the component mounts
+
     // Function to show the information modal immediately
     useEffect(() => {
         showModal(
             <PromptModal
-                title="File Types Information"
+                title="File Types Information"  // Plain string for title
                 bodyText={
-                    `STL file: An STL file is a type of 3D model made of triangles. It is often used for 3D printing.\n\n` +
-                    `CAD: CAD stands for Computer-Aided Design. It is software used to create detailed 2D and 3D drawings and models.\n\n` +
-                    `You can learn more in [Resources](https://printerform1.github.io/printerForm1.0/resources).\n\n`
+                    `<div style="color: white;">
+                        STL file: An STL file is a type of 3D model made of triangles. It is often used for 3D printing.<br><br>
+                        CAD: CAD stands for Computer-Aided Design. It is software used to create detailed 2D and 3D drawings and models.<br><br>
+                        You can learn more in Resources.
+                    </div>`
                 }
-                onConfirm={() => {}}  // Do nothing, just close the modal
-                onCancel={undefined}  // Hide cancel button by not providing an action
+                onConfirm={() => {}} 
+                onCancel={() => {}} 
                 confirmText="Got it"
             />
         );
@@ -119,18 +138,6 @@ const Upload = () => {
 
 
 
-    // useEffect(() => {
-    //     showModal(
-    //         <PromptModal
-    //             title="File Types Information"
-    //             bodyText={`STL file: An STL file is a type of 3D model made of triangles. It is often used for 3D printing.\n\nCAD: CAD stands for Computer-Aided Design. It is software used to create detailed 2D and 3D drawings and models.\n\nYou can learn more about these file types in the <a href="/printerForm1.0/resources" style="color: #00aaff; text-decoration: underline;">Resources</a> section.`}
-    //             onConfirm={() => {}} 
-    //             onCancel={undefined} 
-    //             confirmText="Got it"
-    //             // isHtml={true} 
-    //         />
-    //     );
-    // }, []);
 
     return (
         <>
