@@ -105,13 +105,26 @@ const Upload = () => {
         showModal(
             <PromptModal
                 title="File Types Information"
-                bodyText={`STL file meaning: STL (Stereolithography) files represent 3D models using triangular facets. They are commonly used for 3D printing.\n\nCAD meaning: CAD (Computer-Aided Design) refers to software used to create precise 2D and 3D designs for engineering and manufacturing.`}
-                onConfirm={() => {}} // Do nothing, just close the modal
+                bodyText={`STL file: STL (Stereolithography) files represent 3D models using triangular facets. They are commonly used for 3D printing.\n\nCAD: CAD (Computer-Aided Design) refers to software used to create precise 2D and 3D designs. \n\nYou can learn more in <a href="/printerForm1.0/resources" style="color: #00aaff; text-decoration: underline;">Resources</a>. Then, upload your STL file to PrinterForm.`}
+                onConfirm={() => {}} 
                 confirmText="Got it"
+                onCancel={undefined}
             />
         );
     }, []);
-    
+
+    // useEffect(() => {
+    //     showModal(
+    //         <PromptModal
+    //             title="File Types Information"
+    //             bodyText={`STL file: An STL file is a type of 3D model made of triangles. It is often used for 3D printing.\n\nCAD: CAD stands for Computer-Aided Design. It is software used to create detailed 2D and 3D drawings and models.\n\nYou can learn more about these file types in the <a href="/printerForm1.0/resources" style="color: #00aaff; text-decoration: underline;">Resources</a> section.`}
+    //             onConfirm={() => {}} 
+    //             onCancel={undefined} 
+    //             confirmText="Got it"
+    //             // isHtml={true} 
+    //         />
+    //     );
+    // }, []);
 
     return (
         <>
