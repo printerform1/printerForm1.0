@@ -111,8 +111,9 @@ const Upload = () => {
                     `You can learn more in Resources.`
                 }
                 onConfirm={() => {}}  // Do nothing, just close the modal
-                onCancel={() => {}}   // Remove the cancel button
+                onCancel={() => {}}   // Remove the cancel button/ set it to don't ask again
                 confirmText="Got it"
+                cancelText="Don't ask again"
             />
         );
 
@@ -128,7 +129,7 @@ const Upload = () => {
     if (buttonElement) {
         buttonElement.setAttribute("style", "background-color: #8E2929; color: white;");
     }
-    
+
     }, []);  // Run only once when the component mounts
 
 
