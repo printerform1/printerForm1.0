@@ -108,8 +108,7 @@ const Upload = () => {
                 bodyText={
                     `STL file: An STL file is a type of 3D model made of triangles. It is often used for 3D printing.\n\n` +
                     `CAD: CAD stands for Computer-Aided Design. It is software used to create detailed 2D and 3D drawings and models.\n\n` +
-                    `You can learn more in [Resources](https://printerform1.github.io/printerForm1.0/resources).\n\n` +
-                    `Then, upload your STL file to PrinterForm.`
+                    `You can learn more in [Resources](https://printerform1.github.io/printerForm1.0/resources).\n\n`
                 }
                 onConfirm={() => {}}  // Do nothing, just close the modal
                 onCancel={undefined}  // Hide cancel button by not providing an action
