@@ -77,7 +77,7 @@ export const PromptModal: FC<PromptModalProps> = ({
         <button
           type="button"
           // className="border-blue-500 bg-blue-500 text-theme-body hover:bg-[#1e1e1e] hover:text-theme-highlight flex w-full items-center justify-center rounded-md border-2 px-8 py-2 text-center transition duration-100"
-          className="transition duration-200 rounded-md p-5 bg-light-gray-500 text-white" // white text
+          className="border-[#444444] bg-[#444444] text-theme-text hover:border-blue-500 hover:bg-[#1e1e1e] hover:text-theme-highlight flex w-full items-center justify-center rounded-md border-2 px-8 py-2 text-center transition duration-100" // white text
           style={{ backgroundColor: '#8E2929' }}  // Custom button color
           onClick={handleConfirm}
         >
