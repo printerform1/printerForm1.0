@@ -102,6 +102,10 @@ const Upload = () => {
 
     // Function to show the information modal immediately
     useEffect(() => {
+        const hideModal = localStorage.getItem("hideModal");
+        if (hideModal === "true") {
+            return;  // Don't show the modal if the user selected "Don't ask again"
+        }
         showModal(
             <PromptModal
                 title="File Types Information"
@@ -111,9 +115,11 @@ const Upload = () => {
                     `You can learn more in Resources.`
                 }
                 onConfirm={() => {}}  // Do nothing, just close the modal
-                onCancel={() => {}}   // Remove the cancel button/ set it to don't ask again
+                onCancel={() => {
+                    localStorage.setItem("hideModal", "true");  // Save flag to not show the modal again
+                }}
                 confirmText="Got it"
-                cancelText="Don't ask again"
+                cancelText="Don't show me again"
             />
         );
     }, []);  // Run only once when the component mounts
