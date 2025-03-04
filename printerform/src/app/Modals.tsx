@@ -64,7 +64,11 @@ export const PromptModal: FC<PromptModalProps> = ({
   return (
     <div className="border-[#444444] bg-[#1e1e1e] w-5/12 rounded-md border-2 p-8 text-white">
       <h1 className="font-bold text-white">{title}</h1>
-      <p className="mt-4 text-white">{bodyText}</p>
+      {/* <p className="mt-4 text-white">{bodyText}</p> */}
+      <div
+        className="mt-4 text-white space-y-4"
+        dangerouslySetInnerHTML={{ __html: bodyText }}
+      />
 
       <div className="mt-8 flex flex-row space-x-4">
         <button
