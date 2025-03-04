@@ -1340,10 +1340,6 @@ const Export = () => {
                                    }}
                                >
                                    <img src={projectionSelection.previewThumbnailImgSrc} className="h-52 w-full" />
-
-
-
-
                                    <div className="w-full h-full bg-[#222222] p-4 flex flex-col gap-y-2">
                                        <h2 className="text-xl font-bold text-white">{projectionSelection.projectionTitle}</h2>
                                        <p style={{ color: '#D3D3D3' }}>{projectionSelection.projectionDescription}</p>
@@ -1360,7 +1356,8 @@ const Export = () => {
                                         if (projectionSelections.find(selection => selection.key === projectionSelection.key)) {
                                             setProjectionSelections([]); // Deselect if already selected
                                         } else {
-                                            setProjectionSelections([projectionSelection]); // Replace with new selection
+                                            // setProjectionSelections([projectionSelection]); // Replace with new selection
+                                            setProjectionSelections(old => [...old, projectionSelection]);
                                         }
                                     }}
                                 >
