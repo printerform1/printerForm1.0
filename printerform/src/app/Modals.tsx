@@ -62,9 +62,9 @@ export const PromptModal: FC<PromptModalProps> = ({
   };
 
   return (
-    <div className="border-[#444444] bg-[#1e1e1e] w-5/12 rounded-md border-2 p-8">
-      <h1 className="font-bold">{title}</h1>
-      <p className="mt-4">{bodyText}</p>
+    <div className="border-[#444444] bg-[#1e1e1e] w-5/12 rounded-md border-2 p-8 text-white">
+      <h1 className="font-bold text-white">{title}</h1>
+      <p className="mt-4 text-white">{bodyText}</p>
 
       <div className="mt-8 flex flex-row space-x-4">
         <button
@@ -76,7 +76,9 @@ export const PromptModal: FC<PromptModalProps> = ({
         </button>
         <button
           type="button"
-          className="border-blue-500 bg-blue-500 text-theme-body hover:bg-[#1e1e1e] hover:text-theme-highlight flex w-full items-center justify-center rounded-md border-2 px-8 py-2 text-center transition duration-100"
+          // className="border-blue-500 bg-blue-500 text-theme-body hover:bg-[#1e1e1e] hover:text-theme-highlight flex w-full items-center justify-center rounded-md border-2 px-8 py-2 text-center transition duration-100"
+          className="transition duration-200 rounded-md p-5 bg-light-gray-500 text-white" // white text
+          style={{ backgroundColor: '#8E2929' }}  // Custom button color
           onClick={handleConfirm}
         >
           {confirmText ?? "Confirm"}
