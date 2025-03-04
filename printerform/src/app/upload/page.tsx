@@ -99,8 +99,8 @@ const Upload = () => {
             setIsReturningWithStoredFile(true); // Set flag to indicate we have a stored file
         }
     }, []);
-    
-    /// Function to show the information modal immediately
+
+    // Function to show the information modal immediately
     useEffect(() => {
         showModal(
             <PromptModal
@@ -116,42 +116,7 @@ const Upload = () => {
                 cancelText="Don't ask again"
             />
         );
-
-    // Access the modal and change its styles directly
-    const modalElement = document.querySelector(".PromptModal");
-    if (modalElement) {
-        // Change background and text color
-        modalElement.setAttribute("style", "background-color: white; color: black;");
-    }
-
-    // Change "Got it" button color if possible
-    const buttonElement = document.querySelector(".PromptModal button.confirm-button");
-    if (buttonElement) {
-        buttonElement.setAttribute("style", "background-color: #8E2929; color: white;");
-    }
-
     }, []);  // Run only once when the component mounts
-
-
-
-    // // Function to show the information modal immediately
-    // useEffect(() => {
-    //     showModal(
-    //         <PromptModal
-    //             title="File Types Information"  // Plain string for title
-    //             bodyText={
-    //                 `<div style="color: white;">
-    //                     STL file: An STL file is a type of 3D model made of triangles. It is often used for 3D printing.<br><br>
-    //                     CAD: CAD stands for Computer-Aided Design. It is software used to create detailed 2D and 3D drawings and models.<br><br>
-    //                     You can learn more in Resources.
-    //                 </div>`
-    //             }
-    //             onConfirm={() => {}} 
-    //             onCancel={() => {}} 
-    //             confirmText="Got it"
-    //         />
-    //     );
-    // }, []);  // Run only once when the component mounts
 
 
 
