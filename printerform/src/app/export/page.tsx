@@ -1326,7 +1326,7 @@ const Export = () => {
                 </div>
 
                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pl-8 pr-8 pb-8">
-                       {ALL_PROJECTIONS.map((projectionSelection) => {
+                       {/* {ALL_PROJECTIONS.map((projectionSelection) => {
                            return (
                                <div
                                    key={projectionSelection.key}
@@ -1350,7 +1350,29 @@ const Export = () => {
                                    </div>
                                </div>
                            );
-                       })}
+                       })} */}
+                       {ALL_PROJECTIONS.map((projectionSelection) => {
+                            return (
+                                <div
+                                    key={projectionSelection.key}
+                                    className={`rounded-md overflow-hidden ${projectionSelections.find(selection => selection.key === projectionSelection.key) ? 'border-blue-600' : 'border-[#2c2c2c] hover:border-blue-300'} transition duration-200 border-2 h-96`}
+                                    onClick={() => {
+                                        if (projectionSelections.find(selection => selection.key === projectionSelection.key)) {
+                                            setProjectionSelections([]); // Deselect if already selected
+                                        } else {
+                                            setProjectionSelections([projectionSelection]); // Replace with new selection
+                                        }
+                                    }}
+                                >
+                                    <img src={projectionSelection.previewThumbnailImgSrc} className="h-52 w-full" />
+
+                                    <div className="w-full h-full bg-[#222222] p-4 flex flex-col gap-y-2">
+                                        <h2 className="text-xl font-bold text-white">{projectionSelection.projectionTitle}</h2>
+                                        <p style={{ color: '#D3D3D3' }}>{projectionSelection.projectionDescription}</p>
+                                    </div>
+                                </div>
+                            );
+                        })}
                    </div>
                    <div className="bg-[#1e1e1e] px-5 py-3 flex flex-row justify-between items-center">
                        {/* Back Button */}
