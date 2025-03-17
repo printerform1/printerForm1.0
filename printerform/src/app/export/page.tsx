@@ -130,26 +130,25 @@ class PrintableFactory {
 
 
 
-   public async initializeRenderEnvironment() {
+   public async initializeRenderEnvironmentinitial() {
        this.modelDimensions = await this.loadModel();
-
-
-
-
        this.createLights(350, this.cameraOffsetsFromModelDimensions(this.modelDimensions));
        this.configureCamera(this.modelDimensions);
-
-
-
-
        this.configureRenderer(null);
-
-
-
-
        this.renderer.render(this.scene, this.camera);
    }
 
+   public async initializeRenderEnvironment() {
+    console.log("Initializing render environment...");
+    this.modelDimensions = await this.loadModel();
+    console.log("Model loaded:", this.modelDimensions);
+
+    this.createLights(350, this.cameraOffsetsFromModelDimensions(this.modelDimensions));
+    this.configureCamera(this.modelDimensions);
+    this.configureRenderer(null);
+    this.renderer.render(this.scene, this.camera);
+    console.log("Rendering completed.");
+}
 
 
 
@@ -1174,7 +1173,7 @@ const Export = () => {
    const router = useRouter();
 
 
-   const runQueuedProjections = (printableFactory: PrintableFactory, queuedProjections: ProjectionSelection[]) => {
+   const runQueuedProjectionsinitial = (printableFactory: PrintableFactory, queuedProjections: ProjectionSelection[]) => {
        const projectionSelection = queuedProjections[0];
 
 
@@ -1219,6 +1218,56 @@ const Export = () => {
        );
    };
 
+   const runQueuedProjections = (printableFactory: PrintableFactory, queuedProjections: ProjectionSelection[]) => {
+    if (queuedProjections.length === 0) {
+        console.error("No projections to process.");
+        return;
+    }
+
+    const projectionSelection = queuedProjections[0];
+    console.log("Starting projection:", projectionSelection.projectionTitle);
+
+    printableFactory.producePrintable(
+        projectionSelection.key,
+        (percentComplete) => {
+            console.log(`Rendering progress: ${percentComplete * 100}%`);
+            setLoadingProgress(percentComplete * 100);
+        },
+        (generatedPdfUrl) => {
+            console.log("Projection complete. PDF generated.");
+            if (pdfPreviewUrl) {
+                URL.revokeObjectURL(pdfPreviewUrl);
+            }
+
+            const byteCharacters = atob(generatedPdfUrl.split(',')[1]);
+            const byteNumbers = new Uint8Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+
+            if (typeof window !== 'undefined') {
+                const blob = new Blob([byteNumbers], { type: 'application/pdf' });
+                const blobUrl = URL.createObjectURL(blob);
+                setPdfPreviewUrl(blobUrl);
+                setShowPdfPreview(true);
+            }
+
+            setProjectionLoadingInfo(old => ({
+                ...old,
+                remainingProjections: queuedProjections.length - 1
+            }));
+
+            setLoadingProgress(0);
+
+            const shrunkProjectionQueue = queuedProjections.slice(1);
+            if (shrunkProjectionQueue.length > 0) {
+                runQueuedProjections(printableFactory, shrunkProjectionQueue);
+            }
+        }
+    );
+};
+
+
 
    //    const handleProjectionDownload = async () => {
    //        const selectedProjections = projectionSelections;
@@ -1250,32 +1299,60 @@ const Export = () => {
 
 
 
-
    const handleNext = async () => {
-       setIsPreviewExpanded(true);
-       if (pdfPreviewUrl) {
-           URL.revokeObjectURL(pdfPreviewUrl);
-           setPdfPreviewUrl(null);
-       }
-       setShowPdfPreview(false);
+    if (projectionSelections.length === 0) return; // Prevents empty selection
+
+    setIsPreviewExpanded(true);
+    if (pdfPreviewUrl) {
+        URL.revokeObjectURL(pdfPreviewUrl);
+        setPdfPreviewUrl(null);
+    }
+    setShowPdfPreview(false);
+
+    setProjectionLoadingInfo({
+        remainingProjections: projectionSelections.length,
+        numTotalQueuedProjections: projectionSelections.length
+    });
+
+    const modelUrl = searchParams.get('modelUrl');
+    if (!modelUrl) return;
+    const modelColor = searchParams.get('modelColor') ?? "#dedede";
+
+    const printableFactory = new PrintableFactory({ modelUrl, modelColor });
+
+    await printableFactory.initializeRenderEnvironment();
+
+    runQueuedProjections(printableFactory, projectionSelections);
+
+    // Clear selections after running, not before!
+    setProjectionSelections([]);
+};
+
+//    const handleNext = async () => {
+//        setIsPreviewExpanded(true);
+//        if (pdfPreviewUrl) {
+//            URL.revokeObjectURL(pdfPreviewUrl);
+//            setPdfPreviewUrl(null);
+//        }
+//        setShowPdfPreview(false);
 
 
-       const selectedProjections = projectionSelections;
-       setProjectionLoadingInfo({ remainingProjections: projectionSelections.length, numTotalQueuedProjections: projectionSelections.length });
-       setProjectionSelections([]);
-       const modelUrl = searchParams.get('modelUrl');
-       if (modelUrl === null) return;
-       const modelColor = searchParams.get('modelColor') ?? "#dedede";
+//        const selectedProjections = projectionSelections;
+//        setProjectionLoadingInfo({ remainingProjections: projectionSelections.length, numTotalQueuedProjections: projectionSelections.length });
+//        setProjectionSelections([]);
+//        const modelUrl = searchParams.get('modelUrl');
+//        if (modelUrl === null) return;
+//        const modelColor = searchParams.get('modelColor') ?? "#dedede";
 
 
-       const printableFactory = new PrintableFactory({ modelUrl: modelUrl, modelColor: modelColor });
+//        const printableFactory = new PrintableFactory({ modelUrl: modelUrl, modelColor: modelColor });
 
 
-       await printableFactory.initializeRenderEnvironment();
+//        await printableFactory.initializeRenderEnvironment();
 
 
-       runQueuedProjections(printableFactory, selectedProjections);
-   };
+//        runQueuedProjections(printableFactory, selectedProjections);
+//    };
 
 
 
